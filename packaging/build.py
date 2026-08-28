@@ -16,12 +16,18 @@ import re
 import shutil
 import subprocess
 import sys
+import tempfile
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 GUI_SCRIPT = ROOT / "GUI" / "gui.py"
-DIST = ROOT / "dist"
-BUILD = ROOT / "build"
+# Build entirely outside the project: OneDrive sync locks files under the
+# project root and breaks PyInstaller's cleanup (WinError 5). Only the
+# finished installer is copied back into the project.
+WORK = Path(tempfile.gettempdir()) / "Magnetventilsteuerung-build"
+DIST = WORK / "dist"
+BUILD = WORK / "work"
+INSTALLER_OUT = ROOT / "dist" / "installer"
 
 
 def app_version() -> str:
@@ -67,10 +73,19 @@ def main() -> None:
     if iscc is None:
         sys.exit("Inno Setup (ISCC.exe) nicht gefunden — Installer wurde nicht gebaut.")
     subprocess.run(
-        [iscc, f"/DMyAppVersion={version}", str(ROOT / "packaging" / "installer.iss")],
+        [
+            iscc,
+            f"/DMyAppVersion={version}",
+            f"/DBundleDir={DIST / 'Magnetventilsteuerung'}",
+            f"/O{DIST / 'installer'}",
+            str(ROOT / "packaging" / "installer.iss"),
+        ],
         check=True,
     )
-    print(f"Installer: {DIST / 'installer' / f'Ventilsteuerung-Setup-{version}.exe'}")
+    setup_name = f"Ventilsteuerung-Setup-{version}.exe"
+    INSTALLER_OUT.mkdir(parents=True, exist_ok=True)
+    shutil.copy2(DIST / "installer" / setup_name, INSTALLER_OUT / setup_name)
+    print(f"Installer: {INSTALLER_OUT / setup_name}")
 
 
 if __name__ == "__main__":

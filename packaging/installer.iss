@@ -4,6 +4,9 @@
 #ifndef MyAppVersion
   #define MyAppVersion "0.0.0"
 #endif
+#ifndef BundleDir
+  #define BundleDir "..\dist\Magnetventilsteuerung"
+#endif
 #define MyAppName "Magnetventilsteuerung"
 #define MyAppExeName "Magnetventilsteuerung.exe"
 
@@ -27,7 +30,7 @@ DisableProgramGroupPage=yes
 Name: "german"; MessagesFile: "compiler:Languages\German.isl"
 
 [Files]
-Source: "..\dist\Magnetventilsteuerung\*"; DestDir: "{app}"; Flags: recursesubdirs ignoreversion
+Source: "{#BundleDir}\*"; DestDir: "{app}"; Flags: recursesubdirs ignoreversion
 ; User data: seed on first install, never overwrite on update, keep on uninstall
 Source: "..\GUI\programs.json"; DestDir: "{app}"; Flags: onlyifdoesntexist uninsneveruninstall
 Source: "..\GUI\emergency.json"; DestDir: "{app}"; Flags: onlyifdoesntexist uninsneveruninstall
