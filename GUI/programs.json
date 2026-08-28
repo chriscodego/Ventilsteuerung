@@ -1,0 +1,13 @@
+{
+  "programs": [
+    {
+      "name": "Beispiel: Spülzyklus",
+      "loop": false,
+      "steps": [
+        { "valves": [1, 0, 0, 0, 0, 0, 0, 0], "duration_s": 3.0 },
+        { "valves": [0, 1, 0, 0, 0, 0, 0, 0], "duration_s": 3.0 },
+        { "valves": [0, 0, 0, 0, 0, 0, 0, 0], "duration_s": 1.0 }
+      ]
+    }
+  ]
+}

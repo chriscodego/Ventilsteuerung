@@ -1,0 +1,4 @@
+{
+  "description": "Not-Aus-Sicherheitszustand: Zustand aller 8 Ventile, der beim Druecken des Not-Aus-Buttons sofort gesetzt wird (0 = geschlossen, 1 = offen).",
+  "valves": [0, 0, 0, 0, 0, 0, 0, 0]
+}
