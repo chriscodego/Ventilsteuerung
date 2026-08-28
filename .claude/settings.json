@@ -1,0 +1,49 @@
+{
+  "permissions": {
+    "deny": [
+      "Bash(git push --force:*)",
+      "Bash(git push -f:*)",
+      "Bash(git push --force-with-lease:*)",
+      "Read(**/.env*)",
+      "Read(**/*.pem)",
+      "Read(**/*.key)",
+      "Read(**/secrets/**)",
+      "Read(**/credentials/**)",
+      "Read(**/.aws/**)",
+      "Read(**/.ssh/**)",
+      "Read(**/.pypirc)",
+      "Read(**/*.sqlite3)",
+      "Edit(**/.env*)",
+      "Edit(**/secrets/**)",
+      "Edit(**/.ssh/**)"
+    ],
+    "allow": [
+      "Bash(pip install -e:*)",
+      "Bash(pip list:*)",
+      "Bash(pip show:*)",
+      "Bash(pip-audit:*)",
+      "Bash(python -m ventilsteuerung:*)",
+      "Bash(python -c:*)",
+      "Bash(python packaging/build.py:*)",
+      "Bash(ruff check:*)",
+      "Bash(ruff format:*)",
+      "Bash(mypy:*)",
+      "Bash(pytest:*)",
+      "Bash(alembic current:*)",
+      "Bash(alembic heads:*)",
+      "Bash(alembic history:*)",
+      "Bash(alembic revision:*)",
+      "Bash(alembic upgrade:*)",
+      "Bash(git commit:*)",
+      "Bash(git push:*)",
+      "Bash(git tag:*)",
+      "Bash(git log:*)",
+      "Bash(git diff:*)",
+      "Bash(git status:*)",
+      "Bash(git ls-files:*)",
+      "Bash(ls:*)",
+      "Bash(cat:*)",
+      "Bash(mkdir:*)"
+    ]
+  }
+}
